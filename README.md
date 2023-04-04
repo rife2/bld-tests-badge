@@ -1,4 +1,4 @@
-# [Bld](https://github.com/rife2/rife2/wiki/What-Is-Bld) extension for the TestsBadge service
+# [Bld](https://github.com/rife2/rife2/wiki/What-Is-Bld) extension for the Tests Badge service
 
 [![License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Java](https://img.shields.io/badge/java-17%2B-blue)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
@@ -6,7 +6,7 @@
 [![GitHub CI](https://github.com/rife2/bld-tests-badge/actions/workflows/bld.yml/badge.svg)](https://github.com/rife2/bld-tests-badge/actions/workflows/bld.yml)
 
 A `bld` extension for reporting test results through a
-[Test Badge](https://github.com/rife2/tests-badge) service.
+[Tests Badge](https://github.com/rife2/tests-badge) service.
 
 The complete documentation of `TestsBadgeOperation` can be found in its [javadocs](https://rife2.github.io/bld-tests-badge/rife/bld/extension/TestsBadgeOperation.html).
 
