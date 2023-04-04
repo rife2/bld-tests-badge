@@ -14,7 +14,6 @@ This is an example usage where you replace the `test` command with the
 `TestsBadgeOperation`.
 
 ```java
-@BuildCommand
 public void test()
 throws Exception {
     new TestsBadgeOperation()
