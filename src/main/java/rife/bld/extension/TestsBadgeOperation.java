@@ -85,7 +85,7 @@ public class TestsBadgeOperation extends TestOperation {
 
             if (url_ != null && apiKey_ != null) {
                 var matcher = Pattern.compile(
-                    "(\\d+) tests skipped.*(\\d+) tests successful.*(\\d+) tests failed",
+                    "(\\d+) tests skipped.*?(\\d++) tests successful.*?(\\d++) tests failed",
                     Pattern.MULTILINE | Pattern.DOTALL).matcher(s);
                 if (matcher.find()) {
                     var skipped = Integer.parseInt(matcher.group(1));
