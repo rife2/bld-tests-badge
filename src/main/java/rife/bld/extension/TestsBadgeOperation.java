@@ -4,7 +4,6 @@
  */
 package rife.bld.extension;
 
-import jdk.incubator.vector.VectorOperators;
 import rife.bld.operations.TestOperation;
 
 import java.net.URI;
