@@ -13,7 +13,7 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(0,9,0);
+        version = version(0,9,1);
         javadocOptions
             .docLint(NO_MISSING)
             .link("https://rife2.github.io/rife2/");

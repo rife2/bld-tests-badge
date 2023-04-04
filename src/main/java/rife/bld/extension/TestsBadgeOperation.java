@@ -4,6 +4,7 @@
  */
 package rife.bld.extension;
 
+import jdk.incubator.vector.VectorOperators;
 import rife.bld.operations.TestOperation;
 
 import java.net.URI;
@@ -24,26 +25,46 @@ import java.util.regex.Pattern;
  * @since 1.0
  */
 public class TestsBadgeOperation extends TestOperation {
-    private final String url_;
-    private final String apiKey_;
+    private String url_;
+    private String apiKey_;
 
     /**
-     * Creates a new operation with your credentials.
+     * Creates a new operation.
      *
-     * @param url the TestsBadge service update API url
-     * @param apiKey the unique API key for your project
      * @since 1.0
      */
-    public TestsBadgeOperation(String url, String apiKey) {
+    public TestsBadgeOperation() {
+    }
+
+    /**
+     * Set the URL for the operation.
+     *
+     * @param url the TestsBadge service update API URL
+     * @return this operation instance
+     * @since 1.0
+     */
+    public TestsBadgeOperation url(String url) {
         url_ = url;
+        return this;
+    }
+
+    /**
+     * Set the API key for the operation.
+     *
+     * @param apiKey the unique API key for your project
+     * @return this operation instance
+     * @since 1.0
+     */
+    public TestsBadgeOperation apiKey(String apiKey) {
         apiKey_ = apiKey;
+        return this;
     }
 
     public Function<String, Boolean> outputProcessor() {
         return s -> {
             System.out.println(s);
 
-            if (apiKey_ != null) {
+            if (url_ != null && apiKey_ != null) {
                 var matcher = Pattern.compile(
                     "(\\d+) tests skipped.*(\\d+) tests successful.*(\\d+) tests failed",
                     Pattern.MULTILINE | Pattern.DOTALL).matcher(s);
