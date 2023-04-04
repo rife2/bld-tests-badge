@@ -20,6 +20,7 @@ throws Exception {
     new TestsBadgeOperation()
         .url(property("testsBadgeUrl"))
         .apiKey(property("testsBadgeApiKey"))
-        .fromProject(this).execute();
+        .fromProject(this)
+        .execute();
 }
 ```
