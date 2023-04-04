@@ -8,3 +8,19 @@ A `bld` extension for reporting test results through a
 [Test Badge](https://github.com/rife2/tests-badge) service.
 
 The complete documentation of `TestsBadgeOperation` can be found in its [javadocs](https://rife2.github.io/bld-tests-badge/rife/bld/extension/TestsBadgeOperation.html).
+
+This is an example usage where you replace the `test` command with the
+`TestsBadgeOperation`.
+
+```java
+private final TestsBadgeOperation testsBadgeOperation = new TestsBadgeOperation()
+    .url(property("testsBadgeUrl"))
+    .apiKey(property("testsBadgeApiKey"));
+
+@BuildCommand
+public void test()
+throws Exception {
+    testsBadgeOperation.executeOnce(o -> o.fromProject(this));
+}
+
+```

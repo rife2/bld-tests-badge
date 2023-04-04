@@ -59,6 +59,26 @@ public class TestsBadgeOperation extends TestOperation {
         return this;
     }
 
+    /**
+     * Retrieves the URL for the operation.
+     *
+     * @return the TestsBadge service update API URL
+     * @since 1.0
+     */
+    public String url() {
+        return url_;
+    }
+
+    /**
+     * Retrieves the API key for the operation.
+     *
+     * @return the unique API key for your project
+     * @since 1.0
+     */
+    public String apiKey() {
+        return apiKey_;
+    }
+
     public Function<String, Boolean> outputProcessor() {
         return s -> {
             System.out.println(s);

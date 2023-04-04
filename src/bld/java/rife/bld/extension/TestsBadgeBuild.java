@@ -13,7 +13,7 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(0,9,1);
+        version = version(0,9,2);
         javadocOptions
             .docLint(NO_MISSING)
             .link("https://rife2.github.io/rife2/");
@@ -30,6 +30,9 @@ public class TestsBadgeBuild extends Project {
         repositories = List.of(MAVEN_CENTRAL, RIFE2);
         scope(compile)
             .include(dependency("com.uwyn.rife2", "rife2", version(1,5,16)));
+        scope(test)
+            .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,9,2)))
+            .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,9,2)));
     }
 
     public static void main(String[] args) {
