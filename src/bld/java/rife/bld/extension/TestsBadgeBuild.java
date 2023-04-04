@@ -14,7 +14,9 @@ public class TestsBadgeBuild extends Project {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
         version = version(0,9,0);
-        javadocOptions.docLint(NO_MISSING);
+        javadocOptions
+            .docLint(NO_MISSING)
+            .link("https://rife2.github.io/rife2/");
         publishRepository = repository("rife2");
         publishInfo = new PublishInfo()
             .groupId("com.uwyn.rife2")
