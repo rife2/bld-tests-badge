@@ -14,13 +14,14 @@ This is an example usage where you replace the `test` command with the
 `TestsBadgeOperation`.
 
 ```java
+private final TestsBadgeOperation testsBadgeOperation = new TestsBadgeOperation();
+
 public void test()
 throws Exception {
-    new TestsBadgeOperation()
+    testsBadgeOperation.executeOnce(() -> testsBadgeOperation
         .url(property("testsBadgeUrl"))
         .apiKey(property("testsBadgeApiKey"))
-        .fromProject(this)
-        .execute();
+        .fromProject(this));
 }
 ```
 
