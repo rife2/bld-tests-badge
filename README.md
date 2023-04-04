@@ -23,3 +23,39 @@ throws Exception {
         .execute();
 }
 ```
+
+The `testsBadgeUrl` and `testsBadgeApiKey` properties can then be passed in
+through `bld`'s [hierarchical properties](https://github.com/rife2/rife2/wiki/Bld-Sensitive-and-Common-Data).
+Typically, you would set this up through a CI workflow.
+
+Here's how this could look for a `bld.yml` GitHub worflow:
+
+```yaml
+name: bld-ci
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'17${{ matrix.java-version }}
+
+      - name: Run tests
+        run: >-
+          ./bld download compile test
+          -DtestsBadgeUrl=https://rife2.com/tests-badge/update/group/artifact
+          -DtestsBadgeApiKey=${{ secrets.TESTS_BADGE_API_KEY }}
+```
+
+The `TESTS_BADGE_API_KEY` secret can then be added to the settings of your
+GitHub project without it being visible publicly.
