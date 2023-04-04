@@ -33,7 +33,7 @@ public class TestsBadgeBuild extends Project {
                 .url("https://github.com/gbevin"))
             .license(new PublishLicense()
                 .name("The Apache License, Version 2.0")
-                .url("http://www.apache.org/licenses/LICENSE-2.0.txt"))
+                .url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
             .scm(new PublishScm()
                 .connection("scm:git:https://github.com/rife2/bld-tests-badge.git")
                 .developerConnection("scm:git:git@github.com:rife2/bld-tests-badge.git")
