@@ -21,7 +21,7 @@ public class TestsBadgeBuild extends Project {
         javaRelease = 17;
         downloadSources = true;
         autoDownloadPurge = true;
-        repositories = List.of(MAVEN_CENTRAL, repository("rife2-snapshots"));
+        repositories = List.of(MAVEN_CENTRAL, repository("https://repo.rife2.com/snapshots"));
         scope(compile)
             .include(dependency("com.uwyn.rife2", "rife2", version(1,5,18,"SNAPSHOT")));
         scope(test)
