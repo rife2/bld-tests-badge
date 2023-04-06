@@ -89,39 +89,39 @@ public class TestsBadgeOperation extends TestOperation {
 
     public Function<String, Boolean> outputProcessor() {
         return s -> {
-            System.out.print(s);
+            System.out.println(s);
 
-                if (s.startsWith("[")) {
-                    var passed_matcher = PASSED_PATTERN.matcher(s);
-                    var skipped_matcher = SKIPPED_PATTERN.matcher(s);
-                    var failed_matcher = FAILED_PATTERN.matcher(s);
-                    if (passed_matcher.find()) {
-                        passed_ = Integer.parseInt(passed_matcher.group(1));
-                    } else if (skipped_matcher.find()) {
-                        skipped_ = Integer.parseInt(skipped_matcher.group(1));
-                    } else if (failed_matcher.find()) {
-                        failed_ = Integer.parseInt(failed_matcher.group(1));
-                    }
+            if (s.startsWith("[")) {
+                var passed_matcher = PASSED_PATTERN.matcher(s);
+                var skipped_matcher = SKIPPED_PATTERN.matcher(s);
+                var failed_matcher = FAILED_PATTERN.matcher(s);
+                if (passed_matcher.find()) {
+                    passed_ = Integer.parseInt(passed_matcher.group(1));
+                } else if (skipped_matcher.find()) {
+                    skipped_ = Integer.parseInt(skipped_matcher.group(1));
+                } else if (failed_matcher.find()) {
+                    failed_ = Integer.parseInt(failed_matcher.group(1));
+                }
 
-                    if (passed_ != null && skipped_ != null && failed_ != null) {
-                        try {
-                            var response = HttpClient.newHttpClient()
-                                .send(HttpRequest.newBuilder().uri(new URI(
-                                        url_ + "?" +
-                                            "apiKey=" + apiKey_ +
-                                            "&passed=" + passed_ +
-                                            "&failed=" + failed_ +
-                                            "&skipped=" + skipped_))
-                                    .POST(HttpRequest.BodyPublishers.noBody())
-                                    .build(), HttpResponse.BodyHandlers.ofString()
-                                );
-                            System.out.println("RESPONSE: " + response.statusCode());
-                            System.out.println(response.body());
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                if (passed_ != null && skipped_ != null && failed_ != null) {
+                    try {
+                        var response = HttpClient.newHttpClient()
+                            .send(HttpRequest.newBuilder().uri(new URI(
+                                    url_ + "?" +
+                                        "apiKey=" + apiKey_ +
+                                        "&passed=" + passed_ +
+                                        "&failed=" + failed_ +
+                                        "&skipped=" + skipped_))
+                                .POST(HttpRequest.BodyPublishers.noBody())
+                                .build(), HttpResponse.BodyHandlers.ofString()
+                            );
+                        System.out.println("RESPONSE: " + response.statusCode());
+                        System.out.println(response.body());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                 }
+            }
 
             return true;
         };
