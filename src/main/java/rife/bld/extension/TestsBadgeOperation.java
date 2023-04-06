@@ -79,36 +79,49 @@ public class TestsBadgeOperation extends TestOperation {
         return apiKey_;
     }
 
+    private final static Pattern PASSED_PATTERN = Pattern.compile("(\\d+) tests successful");
+    private final static Pattern SKIPPED_PATTERN = Pattern.compile("(\\d+) tests skipped");
+    private final static Pattern FAILED_PATTERN = Pattern.compile("(\\d+) tests failed");
+
+    private Integer passed_ = null;
+    private Integer skipped_ = null;
+    private Integer failed_ = null;
+
     public Function<String, Boolean> outputProcessor() {
         return s -> {
-            System.out.println(s);
+            System.out.print(s);
 
-            if (url_ != null && apiKey_ != null) {
-                var matcher = Pattern.compile(
-                    "(\\d+) tests skipped.*?(\\d++) tests successful.*?(\\d++) tests failed",
-                    Pattern.MULTILINE | Pattern.DOTALL).matcher(s);
-                if (matcher.find()) {
-                    var skipped = Integer.parseInt(matcher.group(1));
-                    var passed = Integer.parseInt(matcher.group(2));
-                    var failed = Integer.parseInt(matcher.group(3));
-                    try {
-                        var response = HttpClient.newHttpClient()
-                            .send(HttpRequest.newBuilder().uri(new URI(
-                                    url_ + "?" +
-                                        "apiKey=" + apiKey_ +
-                                        "&passed=" + passed +
-                                        "&failed=" + failed +
-                                        "&skipped=" + skipped))
-                                .POST(HttpRequest.BodyPublishers.noBody())
-                                .build(), HttpResponse.BodyHandlers.ofString()
-                            );
-                        System.out.println("RESPONSE: " + response.statusCode());
-                        System.out.println(response.body());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                if (s.startsWith("[")) {
+                    var passed_matcher = PASSED_PATTERN.matcher(s);
+                    var skipped_matcher = SKIPPED_PATTERN.matcher(s);
+                    var failed_matcher = FAILED_PATTERN.matcher(s);
+                    if (passed_matcher.find()) {
+                        passed_ = Integer.parseInt(passed_matcher.group(1));
+                    } else if (skipped_matcher.find()) {
+                        skipped_ = Integer.parseInt(skipped_matcher.group(1));
+                    } else if (failed_matcher.find()) {
+                        failed_ = Integer.parseInt(failed_matcher.group(1));
+                    }
+
+                    if (passed_ != null && skipped_ != null && failed_ != null) {
+                        try {
+                            var response = HttpClient.newHttpClient()
+                                .send(HttpRequest.newBuilder().uri(new URI(
+                                        url_ + "?" +
+                                            "apiKey=" + apiKey_ +
+                                            "&passed=" + passed_ +
+                                            "&failed=" + failed_ +
+                                            "&skipped=" + skipped_))
+                                    .POST(HttpRequest.BodyPublishers.noBody())
+                                    .build(), HttpResponse.BodyHandlers.ofString()
+                                );
+                            System.out.println("RESPONSE: " + response.statusCode());
+                            System.out.println(response.body());
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
-            }
 
             return true;
         };

@@ -16,14 +16,26 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(0,9,4);
+        version = version(0,9,5,"SNAPSHOT");
 
-        javadocOptions
+        javaRelease = 17;
+        downloadSources = true;
+        autoDownloadPurge = true;
+        repositories = List.of(MAVEN_CENTRAL, repository("rife2-snapshots"));
+        scope(compile)
+            .include(dependency("com.uwyn.rife2", "rife2", version(1,5,18,"SNAPSHOT")));
+        scope(test)
+            .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,9,2)))
+            .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,9,2)));
+
+        javadocOperation()
+            .javadocOptions()
             .docLint(NO_MISSING)
             .link("https://rife2.github.io/rife2/");
 
-        publishRepository = version.isSnapshot() ? repository("rife2-snapshots") : repository("rife2-releases");
-        publishInfo = new PublishInfo()
+        publishOperation()
+            .repository(version.isSnapshot() ? repository("rife2-snapshots") : repository("rife2-releases"))
+            .info()
             .groupId("com.uwyn.rife2")
             .artifactId("bld-tests-badge")
             .description("bld Extension to Create or Modify Properties Files")
@@ -42,16 +54,6 @@ public class TestsBadgeBuild extends Project {
                 .url("https://github.com/rife2/bld-tests-badge"))
             .signKey(property("sign.key"))
             .signPassphrase(property("sign.passphrase"));
-
-        javaRelease = 17;
-        downloadSources = true;
-        autoDownloadPurge = true;
-        repositories = List.of(MAVEN_CENTRAL, RIFE2);
-        scope(compile)
-            .include(dependency("com.uwyn.rife2", "rife2", version(1,5,17)));
-        scope(test)
-            .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,9,2)))
-            .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,9,2)));
     }
 
     public static void main(String[] args) {
