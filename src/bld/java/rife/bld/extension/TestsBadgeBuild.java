@@ -17,12 +17,13 @@ public class TestsBadgeBuild extends Project {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
         version = version(0,9,5,"SNAPSHOT");
+        archiveBaseName = "bld-tests-badge";
 
         javaRelease = 17;
         downloadSources = true;
         autoDownloadPurge = true;
 
-        repositories = List.of(MAVEN_CENTRAL, repository("https://repo.rife2.com/snapshots"));
+        repositories = List.of(MAVEN_CENTRAL, RIFE2_SNAPSHOTS, RIFE2_RELEASES);
         scope(compile)
             .include(dependency("com.uwyn.rife2", "rife2", version(1,5,18,"SNAPSHOT")));
         scope(test)
