@@ -91,7 +91,7 @@ public class TestsBadgeOperation extends TestOperation {
         return s -> {
             System.out.println(s);
 
-            if (s.startsWith("[")) {
+            if (url() != null && apiKey() != null && s.startsWith("[")) {
                 var passed_matcher = PASSED_PATTERN.matcher(s);
                 var skipped_matcher = SKIPPED_PATTERN.matcher(s);
                 var failed_matcher = FAILED_PATTERN.matcher(s);

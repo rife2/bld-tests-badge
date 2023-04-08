@@ -16,7 +16,7 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(1,0,0);
+        version = version(1,1,0);
         archiveBaseName = "bld-tests-badge";
 
         javaRelease = 17;
