@@ -16,16 +16,16 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(0,9,5,"SNAPSHOT");
+        version = version(1,0,0);
         archiveBaseName = "bld-tests-badge";
 
         javaRelease = 17;
         downloadSources = true;
         autoDownloadPurge = true;
 
-        repositories = List.of(MAVEN_CENTRAL, RIFE2_SNAPSHOTS, RIFE2_RELEASES);
+        repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
         scope(compile)
-            .include(dependency("com.uwyn.rife2", "rife2", version(1,5,18,"SNAPSHOT")));
+            .include(dependency("com.uwyn.rife2", "rife2", version(1,5,18)));
         scope(test)
             .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,9,2)))
             .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,9,2)));
@@ -38,24 +38,24 @@ public class TestsBadgeBuild extends Project {
         publishOperation()
             .repository(version.isSnapshot() ? repository("rife2-snapshots") : repository("rife2-releases"))
             .info()
-            .groupId("com.uwyn.rife2")
-            .artifactId("bld-tests-badge")
-            .description("bld Extension to Create or Modify Properties Files")
-            .url("https://github.com/rife2/bld-tests-badge")
-            .developer(new PublishDeveloper()
-                .id("gbevin")
-                .name("Geert Bevin")
-                .email("gbevin@uwyn.com")
-                .url("https://github.com/gbevin"))
-            .license(new PublishLicense()
-                .name("The Apache License, Version 2.0")
-                .url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
-            .scm(new PublishScm()
-                .connection("scm:git:https://github.com/rife2/bld-tests-badge.git")
-                .developerConnection("scm:git:git@github.com:rife2/bld-tests-badge.git")
-                .url("https://github.com/rife2/bld-tests-badge"))
-            .signKey(property("sign.key"))
-            .signPassphrase(property("sign.passphrase"));
+                .groupId("com.uwyn.rife2")
+                .artifactId("bld-tests-badge")
+                .description("bld extension for reporting test results through a Tests Badge service")
+                .url("https://github.com/rife2/bld-tests-badge")
+                .developer(new PublishDeveloper()
+                    .id("gbevin")
+                    .name("Geert Bevin")
+                    .email("gbevin@uwyn.com")
+                    .url("https://github.com/gbevin"))
+                .license(new PublishLicense()
+                    .name("The Apache License, Version 2.0")
+                    .url("https://www.apache.org/licenses/LICENSE-2.0.txt"))
+                .scm(new PublishScm()
+                    .connection("scm:git:https://github.com/rife2/bld-tests-badge.git")
+                    .developerConnection("scm:git:git@github.com:rife2/bld-tests-badge.git")
+                    .url("https://github.com/rife2/bld-tests-badge"))
+                .signKey(property("sign.key"))
+                .signPassphrase(property("sign.passphrase"));
     }
 
     public static void main(String[] args) {
