@@ -4,7 +4,7 @@
  */
 package rife.bld.extension;
 
-import rife.bld.operations.TestOperation;
+import rife.bld.operations.JUnitOperation;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * @author Geert Bevin (gbevin[remove] at uwyn dot com)
  * @since 1.0
  */
-public class TestsBadgeOperation extends TestOperation {
+public class TestsBadgeOperation extends JUnitOperation {
     private String url_;
     private String apiKey_;
 

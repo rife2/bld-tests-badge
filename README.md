@@ -11,7 +11,8 @@ A `bld` extension for reporting test results through a
 The complete documentation of `TestsBadgeOperation` can be found in its [javadocs](https://rife2.github.io/bld-tests-badge/rife/bld/extension/TestsBadgeOperation.html).
 
 This is an example usage where you replace the `test` command with the
-`TestsBadgeOperation`.
+`TestsBadgeOperation`. Please note that the `TestBadgeOperation` currently
+only works with JUnit 5 tests.
 
 ```java
 private final TestsBadgeOperation testsBadgeOperation = new TestsBadgeOperation();
