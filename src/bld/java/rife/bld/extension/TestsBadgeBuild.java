@@ -16,16 +16,16 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(1,4,0,"SNAPSHOT");
+        version = version(1,4,0);
         archiveBaseName = "bld-tests-badge";
 
         javaRelease = 17;
         downloadSources = true;
         autoDownloadPurge = true;
 
-        repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES, SONATYPE_SNAPSHOTS);
+        repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
         scope(compile)
-            .include(dependency("com.uwyn.rife2", "bld", version(1,7,0,"SNAPSHOT")));
+            .include(dependency("com.uwyn.rife2", "bld", version(1,7,0)));
         scope(test)
             .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,9,3)))
             .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,9,3)));
