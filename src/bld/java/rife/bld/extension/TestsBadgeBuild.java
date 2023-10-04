@@ -2,7 +2,6 @@ package rife.bld.extension;
 
 import rife.bld.Project;
 import rife.bld.publish.PublishDeveloper;
-import rife.bld.publish.PublishInfo;
 import rife.bld.publish.PublishLicense;
 import rife.bld.publish.PublishScm;
 
@@ -16,7 +15,7 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(1,4,2);
+        version = version(1,4,3);
         archiveBaseName = "bld-tests-badge";
 
         javaRelease = 17;
@@ -25,7 +24,7 @@ public class TestsBadgeBuild extends Project {
 
         repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
         scope(compile)
-            .include(dependency("com.uwyn.rife2", "bld", version(1,7,2)));
+            .include(dependency("com.uwyn.rife2", "bld", version(1,7,3)));
         scope(test)
             .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,9,3)))
             .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,9,3)));
