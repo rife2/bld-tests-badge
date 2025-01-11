@@ -15,19 +15,19 @@ public class TestsBadgeBuild extends Project {
     public TestsBadgeBuild() {
         pkg = "rife.bld.extension";
         name = "TestsBadge";
-        version = version(1,6,0);
+        version = version(1,6,1);
         archiveBaseName = "bld-tests-badge";
 
         javaRelease = 17;
         downloadSources = true;
         autoDownloadPurge = true;
 
-        repositories = List.of(MAVEN_LOCAL, MAVEN_CENTRAL, RIFE2_RELEASES);
+        repositories = List.of(MAVEN_CENTRAL, RIFE2_RELEASES);
         scope(compile)
-            .include(dependency("com.uwyn.rife2", "bld", version(2,1,0)));
+            .include(dependency("com.uwyn.rife2", "bld", version(2,2,0)));
         scope(test)
-            .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,11,0)))
-            .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,11,0)));
+            .include(dependency("org.junit.jupiter", "junit-jupiter", version(5,11,4)))
+            .include(dependency("org.junit.platform", "junit-platform-console-standalone", version(1,11,4)));
 
         javadocOperation()
             .javadocOptions()
